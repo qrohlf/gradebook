@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sender: MyString
+  body: MyString
+  room_id: 
+  timestamp: 2014-08-22 08:53:40
+
+two:
+  sender: MyString
+  body: MyString
+  room_id: 
+  timestamp: 2014-08-22 08:53:40

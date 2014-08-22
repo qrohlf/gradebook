@@ -1,0 +1,26 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @room.name
+
+.panel.panel-default
+  %table.table
+    %thead
+      %tr
+        %th time
+        %th user
+        %th msg
+    %tbody
+      - @room.messages.each do |m|
+        %tr
+          %td
+            = time_ago_in_words(m.timestamp)
+            ago
+          %td= m.sender
+          %td= m.body
+
+
+= link_to 'Edit', edit_room_path(@room)
+\|
+= link_to 'Back', rooms_path
