@@ -2,3 +2,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-generators";
+
+
+#sidebar {
+  background: $brand-primary;
+  color: white;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.col-user {
+  @extend .text-right;
+  a, a:hover {
+    text-decoration: none;
+  }
+}

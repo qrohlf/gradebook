@@ -1,14 +1,9 @@
-%p#notice= notice
+- title "Quote from #{@message.sender} in #{@message.room.name}"
 
-%p
-  %b Sender:
-  = @message.sender
-%p
-  %b Body:
-  = @message.body
-%p
-  %b Room:
-  = @message.room
-%p
-  %b Timestamp:
-  = @message.timestamp
+%h1= "Quote from #{@message.sender} in #{@message.room.name}"
+
+.panel.panel-default
+  .panel-body
+    %p=@message.body
+    %p.text-right
+      %span.text-muted= @message.timestamp.strftime("%c")

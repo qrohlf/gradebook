@@ -1,26 +1,12 @@
-%p#notice= notice
-
-%p
-  %b Name:
+- title "#{@room.name} log"
+%h1
+  Logs for
   = @room.name
 
-.panel.panel-default
-  %table.table
-    %thead
-      %tr
-        %th time
-        %th user
-        %th msg
-    %tbody
-      - @room.messages.each do |m|
-        %tr
-          %td
-            = time_ago_in_words(m.timestamp)
-            ago
-          %td= m.sender
-          %td= m.body
-
-
-= link_to 'Edit', edit_room_path(@room)
-\|
-= link_to 'Back', rooms_path
+- @room.messages.order(:timestamp).each do |m|
+  .row
+    .col-sm-2.col-xs-4.col-user
+      %p
+        %a.text-muted{href: url_for([@room, m])}= m.sender+":"
+    .col-sm-10.col-xs-8
+      %p= m.body
