@@ -1,3 +1,4 @@
+ruby "2.1.1"
 source 'https://rubygems.org'
 
 
@@ -45,3 +46,8 @@ gem 'haml-rails'
 
 # install with "rails generate bootstrap:install -e haml"
 gem 'bootstrap-generators', '~> 3.1.1'
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
