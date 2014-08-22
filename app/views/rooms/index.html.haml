@@ -1,3 +1,2 @@
 %h1 All rooms
-- @rooms.each do |room|
-  %a{href: url_for(room)}= room.name
+!= @rooms.map{|r| link_to r.name, r}.join(" &middot; ")
