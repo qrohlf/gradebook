@@ -3,7 +3,6 @@ namespace :db do
   task nuke_production_data: :environment do
     system "heroku pg:reset --confirm lumberjack-qr DATABASE_URL"
     system "heroku run rake db:migrate"
-    system "notify 'nuke complete'"
   end
 
 end

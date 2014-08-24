@@ -42,6 +42,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'haml-rails'
 gem 'friendly_id', '~> 5.0.0'
+gem 'rinku'
 
 # install with "rails generate bootstrap:install -e haml"
 gem 'bootstrap-generators', '~> 3.1.1'

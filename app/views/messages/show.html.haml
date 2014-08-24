@@ -4,6 +4,6 @@
 
 .panel.panel-default
   .panel-body
-    %p=@message.body
+    %p=@message.html_body
     %p.text-right
       %span.text-muted= @message.timestamp.strftime("%c")

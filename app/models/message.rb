@@ -4,4 +4,9 @@ class Message < ActiveRecord::Base
   def timestamp=(time)
     write_attribute(:timestamp, DateTime.parse(time))
   end
+
+  def html_body
+    Rinku.auto_link(body).html_safe
+  end
+  
 end
