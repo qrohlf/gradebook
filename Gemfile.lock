@@ -44,6 +44,8 @@ GEM
     coffee-script-source (1.7.1)
     erubis (2.7.0)
     execjs (2.2.1)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -142,6 +144,7 @@ DEPENDENCIES
   bootstrap-generators (~> 3.1.1)
   bootstrap-sass (~> 3.2.0)
   coffee-rails (~> 4.0.0)
+  friendly_id (~> 5.0.0)
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
