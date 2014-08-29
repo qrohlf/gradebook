@@ -7,6 +7,6 @@
   .row
     .col-sm-2.col-xs-4.col-user
       %p
-        %a.text-muted{href: url_for([@room, m])}= m.sender+":"
+        %a.text-muted{href: url_for([@room, m]), title: "#{time_ago_in_words(m.timestamp)} ago"}= m.sender+":"
     .col-sm-10.col-xs-8
       %p= m.html_body
