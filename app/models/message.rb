@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
   end
 
   def html_body
-    Rinku.auto_link(h body).html_safe
+    Rinku.auto_link(ERB::Util.html_escape body).html_safe
   end
 
 end
