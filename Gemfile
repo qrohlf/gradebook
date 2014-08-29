@@ -46,6 +46,7 @@ gem 'rinku'
 
 # install with "rails generate bootstrap:install -e haml"
 gem 'bootstrap-generators', '~> 3.1.1'
+gem 'hirb'
 
 group :development do
   # Use sqlite3 as the database for Active Record
