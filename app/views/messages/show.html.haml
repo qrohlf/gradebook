@@ -6,4 +6,4 @@
   .panel-body
     %p=@message.html_body
     %p.text-right
-      %span.text-muted= @message.timestamp.strftime("%c")
+      %span.text-muted= @message.timestamp.in_time_zone('Pacific Time (US & Canada)').strftime("%H:%M on %b %d %Y (%Z)")
