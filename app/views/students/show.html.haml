@@ -1,7 +1,7 @@
 - title "#{@student.full_name}"
 .page-header
   - if @student.github_username
-    = link_to @student.github_url, :class=> 'btn btn-default', target: '_blank' do
+    = link_to @student.github_repo_url, :class=> 'btn btn-default', target: '_blank' do
       %span.icon-github-2
       GitHub
   = link_to "mailto:#{@student.email}", :class=> 'btn btn-default', target: '_blank' do
