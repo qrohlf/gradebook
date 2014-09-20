@@ -1,13 +1,12 @@
+- title "#{@submission.tag} - Edit"
 .page-header
-  = link_to student_submissions_path(@student), :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  = link_to [@student, @submission], :class => 'btn btn-primary' do
-    %span.glyphicon.glyphicon-info-sign
-    Show
-  = link_to [@student, @submission], :class => 'btn btn-danger', method: :delete do
+
+  = link_to [@student, @submission], :class => 'btn btn-default', method: :delete do
     %span.glyphicon.glyphicon-remove
     Destroy
-  %h1 Editing submission
+  = link_to @student, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  %h1="#{@student} - #{@submission}"
 
 = render 'form'
