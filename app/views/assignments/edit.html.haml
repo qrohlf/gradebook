@@ -1,0 +1,10 @@
+.page-header
+  = link_to assignments_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to @assignment, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Show
+  %h1 Editing assignment
+
+= render 'form'

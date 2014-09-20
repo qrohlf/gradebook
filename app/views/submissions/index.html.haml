@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_student_submission_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Submission
+  %h1 Listing submissions
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Tag
+        %th Assignment
+        %th Student
+        %th Status
+        %th
+        %th
+        %th
+
+    %tbody
+      - @submissions.each do |submission|
+        %tr
+          %td= submission.tag
+          %td= submission.assignment
+          %td= submission.student.full_name
+          %td= submission.status
+          %td= link_to 'Show', [@student, submission]
+          %td= link_to 'Edit', edit_student_submission_path(@student, submission)
+          %td= link_to 'Destroy', [@student, submission], :data => { confirm: 'Are you sure?' }, :method => :delete

@@ -1,0 +1,18 @@
+.page-header
+  = link_to student_submissions_path(@student), :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_student_submission_path(@student, @submission), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show submission
+
+%dl.dl-horizontal
+  %dt Tag:
+  %dd= @submission.tag
+  %dt Assignment:
+  %dd= @submission.assignment
+  %dt Student:
+  %dd= @submission.student
+  %dt Status:
+  %dd= @submission.status.humanize

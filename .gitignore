@@ -14,3 +14,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore students
+/students.rb
+
+# Ignore environment vars
+.env

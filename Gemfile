@@ -1,4 +1,4 @@
-ruby "2.1.1"
+ruby "2.1.3"
 source 'https://rubygems.org'
 
 
@@ -43,6 +43,10 @@ gem 'autoprefixer-rails'
 gem 'haml-rails'
 gem 'friendly_id', '~> 5.0.0'
 gem 'rinku'
+gem 'icomoon-rails'
+gem "omniauth-google-oauth2"
+gem 'dotenv'
+gem 'high_voltage'
 
 # install with "rails generate bootstrap:install -e haml"
 gem 'bootstrap-generators', '~> 3.1.1'

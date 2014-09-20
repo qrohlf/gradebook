@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824162114) do
+ActiveRecord::Schema.define(version: 20140919163518) do
+
+  create_table "assignments", force: true do |t|
+    t.string   "title"
+    t.string   "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -26,24 +33,29 @@ ActiveRecord::Schema.define(version: 20140824162114) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
-  create_table "messages", force: true do |t|
-    t.string   "sender"
-    t.text     "body",       limit: 255
-    t.integer  "room_id"
-    t.datetime "timestamp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "messages", ["room_id"], name: "index_messages_on_room_id"
-
-  create_table "rooms", force: true do |t|
-    t.string   "name"
+  create_table "students", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "github_username"
+    t.string   "github_repo"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
   end
 
-  add_index "rooms", ["slug"], name: "index_rooms_on_slug", unique: true
+  add_index "students", ["slug"], name: "index_students_on_slug", unique: true
+
+  create_table "submissions", force: true do |t|
+    t.string   "tag"
+    t.integer  "assignment_id"
+    t.integer  "student_id"
+    t.integer  "status",        default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id"
+  add_index "submissions", ["student_id"], name: "index_submissions_on_student_id"
 
 end

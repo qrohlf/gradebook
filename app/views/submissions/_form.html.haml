@@ -1,0 +1,25 @@
+= form_for [@student, @submission], :html => { :class => "form-horizontal" } do |f|
+  -if @submission.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@submission.errors.count, "error")} prohibited this submission from being saved:"
+
+      %ul
+        - @submission.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :tag, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :tag, :class => 'form-control'
+  .form-group
+    = f.label :assignment, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.select :assignment_id, options_for_select(Assignment.all.to_a.map{|a| [a.title, a.id] }), {}, :class => 'form-control'
+  .form-group
+    = f.label :status, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.select :status, options_for_select(Submission.statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @submission.status), {}, :class => 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit :class => 'btn btn-primary'

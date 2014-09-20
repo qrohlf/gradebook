@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :rooms do
-    resources :messages
+
+  resources :assignments
+  resources :students do
+    resources :submissions
   end
 
-  post '/' => 'messages#create'
-  root 'rooms#index'
+  get '/auth/google_oauth2/callback' => 'auth#google_oauth2'
+  get '/logout' => 'auth#logout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

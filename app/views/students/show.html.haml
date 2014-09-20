@@ -1,0 +1,43 @@
+.page-header
+  = link_to @student.github_url, :class=> 'btn btn-default', target: '_blank' do
+    %span.icon-github-2
+    GitHub
+  = link_to "mailto:#{@student.email}", :class=> 'btn btn-default', target: '_blank' do
+    %span.glyphicon.glyphicon-inbox
+    Email
+  - if admin?
+    = link_to students_path, :class => 'btn btn-default' do
+      %span.glyphicon.glyphicon-list-alt
+      Students
+  = link_to edit_student_path(@student), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1= @student.full_name
+
+- Assignment.find_each do |assignment|
+  - submissions = Submission.where(assignment: assignment, student: @student).order(:created_at)
+  .panel{class: (submissions.completed.count > 0) ? 'panel-success' : 'panel-default'}
+    .panel-heading
+      %h2.panel-title= assignment
+    - if submissions.count == 0
+      .panel-body
+        %p No submissions for this assignment yet.
+    .list-group
+      - submissions.each do |submission|
+        %div.list-group-item
+          %a.btn.btn-default.pull-right{href: submission.github_url, target: '_blank'}
+            %span{class: 'icon-github-3'}
+          %h4.list-group-item-heading
+            - if admin?
+              %a{href: edit_student_submission_path(@student, submission)}= submission
+            - else
+              = submission
+          %p
+            =submission.status_label
+    .panel-footer
+      = form_for [@student, Submission.new(assignment: assignment)], :html => { :class => "form-inline" } do |f|
+        .form-group
+          = f.label :tag, :class => 'control-label sr-only'
+          = f.text_field :tag, :class => 'form-control input-sm', placeholder: 'Git Tag (i.e. v0.0.0)'
+        = f.hidden_field :assignment_id
+        = f.submit :class => 'btn btn-primary btn-sm', :value => 'Submit New Version'

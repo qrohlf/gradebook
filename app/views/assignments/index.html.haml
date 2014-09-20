@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_assignment_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Assignment
+  %h1 Listing assignments
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Title
+        %th Details
+        %th
+        %th
+        %th
+
+    %tbody
+      - @assignments.each do |assignment|
+        %tr
+          %td= assignment.title
+          %td= assignment.details
+          %td= link_to 'Show', assignment
+          %td= link_to 'Edit', edit_assignment_path(assignment)
+          %td= link_to 'Destroy', assignment, :data => { confirm: 'Are you sure?' }, :method => :delete

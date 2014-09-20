@@ -1,0 +1,33 @@
+= form_for @student, :html => { :class => "form-horizontal" } do |f|
+  -if @student.errors.any?
+    .alert.alert-danger.alert-dismissable
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+      %h4= "#{pluralize(@student.errors.count, "error")} prohibited this student from being saved:"
+
+      %ul
+        - @student.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :first_name, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :first_name, :class => 'form-control'
+  .form-group
+    = f.label :last_name, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :last_name, :class => 'form-control'
+  .form-group
+    = f.label :github_username, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :github_username, :class => 'form-control'
+  .form-group
+    = f.label :github_repo, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :github_repo, :class => 'form-control'
+  .form-group
+    = f.label :email, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :email, :class => 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit :class => 'btn btn-primary'

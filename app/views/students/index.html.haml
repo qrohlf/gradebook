@@ -1,0 +1,12 @@
+.page-header
+  = link_to new_student_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Student
+  %h1 Listing students
+
+.list-group
+  - @students.each do |student|
+    %a.list-group-item{href: url_for(student)}
+      %span.h4= student.full_name
+      - if student.submissions.not_graded.count > 0
+        %span.label.label-warning= student.submissions.not_graded.order(:created_at).last
