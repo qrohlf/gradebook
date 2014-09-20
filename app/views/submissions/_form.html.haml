@@ -15,7 +15,7 @@
   .form-group
     = f.label :assignment, :class => 'col-sm-2 control-label'
     .col-sm-10
-      = f.select :assignment_id, options_for_select(Assignment.all.to_a.map{|a| [a.title, a.id] }), {}, :class => 'form-control'
+      = f.select :assignment_id, options_for_select(Assignment.all.to_a.map{|a| [a.title, a.id] }, selected: @submission.assignment.id), {}, :class => 'form-control'
   .form-group
     = f.label :status, :class => 'col-sm-2 control-label'
     .col-sm-10
