@@ -21,7 +21,12 @@
           %button.close{:type => "button", :data => {:dismiss => "alert"}, :aria => {:hidden => "true"} } &times;
           = msg
       = yield
-      - if admin?
-        %p.text-center
-          %a.btn.btn-default{href: '/logout'} logout
+    - if admin?
+      #footer
+        .container
+          %p.text-center
+            Currently logged in as
+            = session[:user]
+          %p
+            %a.btn.btn-default{href: '/logout'} logout?
     %script{:src => "//use.edgefonts.net/lato:n1,i1,n3,i3,n4,i4,n7,i7,n9,i9;open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8,i8.js"}

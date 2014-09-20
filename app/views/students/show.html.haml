@@ -35,9 +35,12 @@
           %p
             =submission.status_label
     .panel-footer
-      = form_for [@student, Submission.new(assignment: assignment)], :html => { :class => "form-inline" } do |f|
-        .form-group
-          = f.label :tag, :class => 'control-label sr-only'
-          = f.text_field :tag, :class => 'form-control input-sm', placeholder: 'Git Tag (i.e. v0.0.0)'
-        = f.hidden_field :assignment_id
-        = f.submit :class => 'btn btn-primary btn-sm', :value => 'Submit New Version'
+      - if submissions.completed.count > 0 and not admin?
+        Completed!
+      - else
+        = form_for [@student, Submission.new(assignment: assignment)], :html => { :class => "form-inline" } do |f|
+          .form-group
+            = f.label :tag, :class => 'control-label sr-only'
+            = f.text_field :tag, :class => 'form-control input-sm', placeholder: 'Git Tag (i.e. v0.0.0)'
+          = f.hidden_field :assignment_id
+          = f.submit :class => 'btn btn-primary btn-sm', :value => 'Submit New Version'

@@ -25,3 +25,10 @@ h1 {
 .text-big {
   font-size: 200%;
 }
+
+#footer {
+  background-color: $gray-lighter;
+  padding: 32px 0;
+  text-align: center;
+  margin-top: 64px;
+}
