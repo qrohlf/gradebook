@@ -16,13 +16,13 @@ class Submission < ActiveRecord::Base
 
   def status_class
     {
-      not_graded: 'label-default',
-      incomplete: 'label-warning',
-      completed: 'label-success'
+      not_graded: 'default',
+      incomplete: 'warning',
+      completed: 'success'
     }[status.to_sym]
   end
 
   def status_label
-    "<span class='label #{status_class}'>#{status.humanize}</span>".html_safe
+    "<span class='label label-#{status_class}'>#{status.humanize}</span>".html_safe
   end
 end

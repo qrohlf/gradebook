@@ -9,5 +9,6 @@
   - @students.each do |student|
     %a.list-group-item{href: url_for(student)}
       = student.full_name
-      - if student.submissions.not_graded.count > 0
-        %span.label.label-warning= student.submissions.not_graded.order(:created_at).last
+      - if student.submissions.count > 0
+        - s = student.submissions.order(:created_at).last
+        %span.pull-right.label{class: "label-"+s.status_class}= s
