@@ -10,5 +10,5 @@
     %a.list-group-item{href: url_for(student)}
       = student.full_name
       - if student.submissions.count > 0
-        - s = student.submissions.order(:created_at).last
+        - s = student.submissions.order(:tag).last
         %span.pull-right.label{class: "label-"+s.status_class}= s
