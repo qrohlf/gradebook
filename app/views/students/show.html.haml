@@ -20,7 +20,7 @@
   - submissions = Submission.where(assignment: assignment, student: @student).order(:created_at)
   .panel{class: (submissions.completed.count > 0) ? 'panel-success' : 'panel-default'}
     .panel-heading
-      %h2.panel-title= assignment
+      %h2.panel-title= link_to assignment, assignment.details, target: '_blank'
     - if submissions.count == 0
       .panel-body
         %p No submissions for this assignment yet.
