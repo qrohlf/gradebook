@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get '/auth/google_oauth2/callback' => 'auth#google_oauth2'
   get '/logout' => 'auth#logout'
+  get '/submissions' => 'submissions#index'
 
   root 'students#index'
 

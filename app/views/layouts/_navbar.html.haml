@@ -1,0 +1,25 @@
+.navbar.navbar-default.navbar-static-top{:role => "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} Webdev Gradebook
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{:href => "/students"} Students
+        %li
+          %a{:href => "/assignments"} Assignments
+        %li
+          %a{:href => "/submissions"} Submissions
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            =session[:user]
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => "/logout"} Logout

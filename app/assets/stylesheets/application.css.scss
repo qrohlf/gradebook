@@ -28,7 +28,46 @@ h1 {
 
 #footer {
   background-color: $gray-lighter;
-  padding: 32px 0;
   text-align: center;
-  margin-top: 64px;
+  padding-top: 20px;
+}
+
+/* Panels! */
+// Apply the mixin to the panel footers, too!
+.panel-success > .panel-footer   {
+  color: $panel-success-text;
+  background-color: $panel-success-heading-bg;
+  border-color: $panel-success-border;
+}
+
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+$footer-height: 60px;
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 0 0 -$footer-height;
+  padding-bottom: $footer-height + 64px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: $footer-height;
+}
+#footer {
+  background-color: #f5f5f5;
 }

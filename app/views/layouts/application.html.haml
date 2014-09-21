@@ -15,18 +15,18 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .container
-      - flash.each do |name, msg|
-        = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable" do
-          %button.close{:type => "button", :data => {:dismiss => "alert"}, :aria => {:hidden => "true"} } &times;
-          = msg
-      = yield
+    #wrap
+      - if admin?
+        = render partial: 'layouts/navbar'
+      .container
+        - flash.each do |name, msg|
+          = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable" do
+            %button.close{:type => "button", :data => {:dismiss => "alert"}, :aria => {:hidden => "true"} } &times;
+            = msg
+        = yield
     - if admin?
       #footer
         .container
           %p.text-center
-            Currently logged in as
-            = session[:user]
-          %p
-            %a.btn.btn-default{href: '/logout'} logout?
+            Found a bug? <a href="https://github.com/qrohlf/gradebook/issues">Let me know</a>.
     %script{:src => "//use.edgefonts.net/lato:n1,i1,n3,i3,n4,i4,n7,i7,n9,i9;open-sans:n3,i3,n4,i4,n6,i6,n7,i7,n8,i8.js"}
