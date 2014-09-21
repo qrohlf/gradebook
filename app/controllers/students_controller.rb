@@ -80,7 +80,7 @@ class StudentsController < ApplicationController
     end
 
     def sync_all_tags!
-      Parallel.each(Student.all, :in_processes => 8) do |student|
+      Parallel.each(Student.all, :in_processes => 4) do |student|
         student.sync_tags
       end
       Student.connection.reconnect!
