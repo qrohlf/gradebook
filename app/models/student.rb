@@ -30,4 +30,16 @@ class Student < ActiveRecord::Base
   def to_s
     full_name
   end
+
+  def sync_tags
+    return unless github_username and github_repo
+    tags = Octokit.tags(github_username+'/'+github_repo).map(&:name)
+    Assignment.find_each do |assignment|
+      assignment_tags = tags.select{|t| t.start_with? assignment.tag_prefix} unless assignment.tag_prefix.nil?
+      puts assignment.to_s+" -> "+assignment_tags.join(", ")
+      assignment_tags.each do |tag|
+        submissions.find_or_create_by(tag: tag, assignment: assignment)
+      end
+    end
+  end
 end

@@ -13,6 +13,10 @@
     .col-sm-10
       = f.text_field :title, :class => 'form-control'
   .form-group
+    = f.label :tag_prefix, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :tag_prefix, :class => 'form-control'
+  .form-group
     = f.label :details, :class => 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :details, :class => 'form-control'

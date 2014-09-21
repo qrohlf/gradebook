@@ -47,6 +47,7 @@ gem 'icomoon-rails'
 gem "omniauth-google-oauth2"
 gem 'dotenv'
 gem 'high_voltage'
+gem "octokit", "~> 3.0"
 
 # install with "rails generate bootstrap:install -e haml"
 gem 'bootstrap-generators', '~> 3.1.1'
