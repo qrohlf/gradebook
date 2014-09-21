@@ -2,8 +2,14 @@
 .text-center
   .page-header
     %h1 401 Unauthorized
-  %p Sorry, you'll need to sign in to go past this point
-  %p
-    %a.btn.btn-large.btn-primary{href: '/auth/google_oauth2/'}
-      %span.icon-google
-      Sign in with Google
+  - if session[:user]
+    %p Sorry, you don't have permission to view this content
+    %p
+      %a.btn.btn-large.btn-default{href: '/logout'}
+        Log out?
+  - else
+    %p Sorry, you'll need to sign in to go past this point
+    %p
+      %a.btn.btn-large.btn-primary{href: '/auth/google_oauth2/'}
+        %span.icon-google
+        Sign in with Google

@@ -9,7 +9,7 @@ class AuthController < ApplicationController
   end
 
   def logout
-    session[:admin] = false
+    reset_session
     redirect_to root_path
   end
 end
