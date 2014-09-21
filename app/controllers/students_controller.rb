@@ -1,6 +1,8 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :require_admin, except: [:show, :update, :edit]
+  before_action :sync_tags, only: [:show, :edit]
+  before_action :sync_all_tags!, only: [:index]
 
   # GET /students
   # GET /students.json
@@ -71,5 +73,13 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:first_name, :last_name, :github_username, :github_repo, :email)
+    end
+
+    def sync_tags
+      @student.sync_tags(force_update: true)
+    end
+
+    def sync_all_tags!
+      Student.find_each(&:sync_tags)
     end
 end
