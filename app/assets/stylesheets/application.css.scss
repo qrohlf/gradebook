@@ -61,7 +61,7 @@ $footer-height: 60px;
   height: 100%;
   /* Negative indent footer by it's height */
   margin: 0 0 0 -$footer-height;
-  padding-bottom: $footer-height + 64px;
+  padding-bottom: $footer-height + 32px;
 }
 
 /* Set the fixed height of the footer here */
