@@ -42,6 +42,7 @@ class SubmissionsController < ApplicationController
   # PATCH/PUT /submissions/1
   # PATCH/PUT /submissions/1.json
   def update
+    puts "FEEDBACK #{submission_params['feedback']}"
     respond_to do |format|
       if @submission.update(submission_params)
         format.html { redirect_to @student, notice: 'Submission was successfully updated.' }
@@ -71,7 +72,7 @@ class SubmissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-      params.require(:submission).permit(:tag, :assignment_id, :student_id, :status, :feedback)
+      params.require(:submission).permit(:feedback, :tag, :assignment_id, :student_id, :status)
     end
 
     def load_student
