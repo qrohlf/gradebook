@@ -1,7 +1,7 @@
 class SubmissionsController < ApplicationController
   before_filter :load_student
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin, except: [:create]
+  before_action :require_admin
 
   # GET /submissions
   # GET /submissions.json

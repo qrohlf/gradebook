@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin, except: [:show, :update, :edit]
+  before_action :require_admin, except: [:show]
   before_action :sync_tags, only: [:show, :edit]
   before_action :sync_all_tags!, only: [:index]
 

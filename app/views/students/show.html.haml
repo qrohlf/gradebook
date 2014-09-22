@@ -4,16 +4,16 @@
     = link_to @student.github_repo_url, :class=> 'btn btn-default', target: '_blank' do
       %span.icon-github-2
       GitHub
-  = link_to "mailto:#{@student.email}", :class=> 'btn btn-default', target: '_blank' do
-    %span.glyphicon.glyphicon-inbox
-    Email
   - if admin?
+    = link_to "mailto:#{@student.email}", :class=> 'btn btn-default', target: '_blank' do
+      %span.glyphicon.glyphicon-inbox
+      Email
     = link_to students_path, :class => 'btn btn-default' do
       %span.glyphicon.glyphicon-list-alt
       Students
-  = link_to edit_student_path(@student), :class => 'btn btn-default' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
+    = link_to edit_student_path(@student), :class => 'btn btn-default' do
+      %span.glyphicon.glyphicon-pencil
+      Edit
   %h1= @student.full_name
 
 - Assignment.find_each do |assignment|
