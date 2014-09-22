@@ -31,10 +31,10 @@ class Student < ActiveRecord::Base
     full_name
   end
 
-  def sync_tags(force_update: false)
+  def sync_tags(force_update: false, tags: nil)
     return unless github_username and github_repo #can't update a user's tags if their info isn't here
     return unless force_update or last_sync.nil? or last_sync < DateTime.now - 5.minutes
-    tags = Octokit.tags(github_username+'/'+github_repo).map(&:name)
+    tags ||= Octokit.tags(github_username+'/'+github_repo).map(&:name)
     Assignment.find_each do |assignment|
       assignment_tags = tags.select{|t| t.start_with? assignment.tag_prefix} unless assignment.tag_prefix.nil?
       puts assignment.to_s+" -> "+assignment_tags.join(", ")
@@ -43,5 +43,15 @@ class Student < ActiveRecord::Base
       end
     end
     update_attribute :last_sync, DateTime.now
+  end
+
+  def self.sync_all_tags!
+    students = where.not(github_username: nil, github_repo: nil)
+    data = Parallel.map(students, in_threads: 8) do |student|
+      {student: student, tags: Octokit.tags(student.github_username+'/'+student.github_repo).map(&:name)}
+    end
+    data.each do |datum|
+      datum[:student].sync_tags(tags: datum[:tags])
+    end
   end
 end

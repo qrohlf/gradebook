@@ -80,6 +80,6 @@ class StudentsController < ApplicationController
     end
 
     def sync_all_tags!
-      Student.find_each(&:sync_tags) #Sloooow
+      Student.sync_all_tags!
     end
 end
