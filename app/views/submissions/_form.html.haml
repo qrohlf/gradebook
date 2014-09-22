@@ -21,5 +21,9 @@
     .col-sm-10
       = f.select :status, options_for_select(Submission.statuses.collect { |s| [s[0].humanize, s[0]] }, selected: @submission.status), {}, :class => 'form-control'
   .form-group
+    = f.label :feedback, :class => 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :feedback, :class => 'form-control'
+  .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit :class => 'btn btn-primary'

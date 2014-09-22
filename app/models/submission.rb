@@ -17,7 +17,7 @@ class Submission < ActiveRecord::Base
   def status_class
     {
       not_graded: 'default',
-      incomplete: 'warning',
+      incomplete: 'info',
       completed: 'success'
     }[status.to_sym]
   end

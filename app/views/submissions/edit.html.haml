@@ -1,6 +1,6 @@
 - title "#{@submission.tag} - Edit"
 .page-header
-  = link_to @submission.github_url, :class => 'btn btn-default' do
+  = link_to @submission.github_url, :class => 'btn btn-default', target: '_blank' do
     %span.icon-github-2
     GitHub
   = link_to [@student, @submission], :class => 'btn btn-default', method: :delete do

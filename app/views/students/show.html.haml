@@ -27,8 +27,14 @@
     .list-group
       - submissions.each do |submission|
         %div.list-group-item
-          %a.btn.btn-default.pull-right{href: submission.github_url, target: '_blank'}
-            %span{class: 'icon-github-3'}
+          .btn-group.pull-right
+            - unless submission.feedback.blank?
+              %a.btn.btn-default{href: submission.feedback, target: '_blank'}
+                %span.glyphicon.glyphicon-comment
+                Feedback
+            %a.btn.btn-default.pull-right{href: submission.github_url, target: '_blank'}
+              %span{class: 'icon-github-2'}
+              View
           %h4.list-group-item-heading
             - if admin?
               %a{href: edit_student_submission_path(@student, submission)}= submission
