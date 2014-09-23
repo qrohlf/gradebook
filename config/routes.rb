@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get '/students/stats.json' => 'students#stats'
+  
   resources :assignments
   resources :students do
     resources :submissions

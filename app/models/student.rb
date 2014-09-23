@@ -31,6 +31,10 @@ class Student < ActiveRecord::Base
     full_name
   end
 
+  def assignment_progress
+    submissions.completed.order(:tag).last.assignment rescue nil
+  end
+
   def sync_tags(force_update: false, tags: nil)
     return unless github_username and github_repo #can't update a user's tags if their info isn't here
     return unless force_update or last_sync.nil? or last_sync < DateTime.now - 5.minutes

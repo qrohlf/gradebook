@@ -10,6 +10,27 @@ class StudentsController < ApplicationController
     @students = Student.all.order(:last_name)
   end
 
+  # GET /stats.json
+  # Number of students who have completed each assignment
+  def stats
+    students = Student.all
+    colors = ["#d73027","#fc8d59","#fee090","#e0f3f8","#91bfdb","#4575b4"]
+    stats = Assignment.all.map do |assignment|
+      c = colors[assignment.id % colors.size]
+      {
+        value: students.select{|s| s.assignment_progress == assignment}.count,
+        label: assignment.title,
+        color: c
+      }
+    end
+    stats << {
+      value: students.select{|s| s.assignment_progress == nil}.count,
+      label: "None",
+      color: colors[Assignment.count % colors.size]
+      }
+    render json: stats
+  end
+
   # GET /students/1
   # GET /students/1.json
   def show

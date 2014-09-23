@@ -1,5 +1,6 @@
 ruby "2.1.3"
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -49,6 +50,7 @@ gem 'dotenv'
 gem 'high_voltage'
 gem "octokit", "~> 3.0"
 gem "parallel"
+gem "rails-assets-chartjs", "1.0.1.beta.4"
 
 # install with "rails generate bootstrap:install -e haml"
 gem 'bootstrap-generators', '~> 3.1.1'
