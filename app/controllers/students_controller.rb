@@ -14,7 +14,7 @@ class StudentsController < ApplicationController
   # Number of students who have completed each assignment
   def stats
     students = Student.all
-    colors = ["#d73027","#fc8d59","#fee090","#e0f3f8","#91bfdb","#4575b4"]
+    colors = ["#f46d43","#fdae61","#fee090","#e0f3f8","#abd9e9","#74add1","#4575b4"]
     stats = Assignment.all.order(:title).map.with_index do |assignment, index|
       c = colors[index % colors.size]
       {
