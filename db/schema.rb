@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140922001500) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assignments", force: true do |t|
     t.string   "title"
     t.string   "details"
@@ -29,10 +32,10 @@ ActiveRecord::Schema.define(version: 20140922001500) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "students", force: true do |t|
     t.string   "first_name"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140922001500) do
     t.datetime "last_sync"
   end
 
-  add_index "students", ["slug"], name: "index_students_on_slug", unique: true
+  add_index "students", ["slug"], name: "index_students_on_slug", unique: true, using: :btree
 
   create_table "submissions", force: true do |t|
     t.string   "tag"
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140922001500) do
     t.string   "feedback"
   end
 
-  add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id"
-  add_index "submissions", ["student_id"], name: "index_submissions_on_student_id"
+  add_index "submissions", ["assignment_id"], name: "index_submissions_on_assignment_id", using: :btree
+  add_index "submissions", ["student_id"], name: "index_submissions_on_student_id", using: :btree
 
 end

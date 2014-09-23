@@ -56,13 +56,13 @@ gem "rails-assets-chartjs", "1.0.1.beta.4"
 gem 'bootstrap-generators', '~> 3.1.1'
 gem 'hirb'
 
+gem 'pg' #postgres
+
 group :development do
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'faker'
 end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
   gem 'unicorn'
 end
