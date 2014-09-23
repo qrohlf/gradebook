@@ -15,8 +15,8 @@ class StudentsController < ApplicationController
   def stats
     students = Student.all
     colors = ["#d73027","#fc8d59","#fee090","#e0f3f8","#91bfdb","#4575b4"]
-    stats = Assignment.all.order(:title).map do |assignment|
-      c = colors[assignment.id % colors.size]
+    stats = Assignment.all.order(:title).map.with_index do |assignment, index|
+      c = colors[index % colors.size]
       {
         value: students.select{|s| s.assignment_progress == assignment}.count,
         label: assignment.title,
@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
     stats << {
       value: students.select{|s| s.assignment_progress == nil}.count,
       label: "None",
-      color: colors[Assignment.count % colors.size]
+      color: colors[Assignment.count + 1 % colors.size]
       }
     render json: stats
   end
