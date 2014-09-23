@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
     stats << {
       value: students.select{|s| s.assignment_progress == nil}.count,
       label: "None",
-      color: colors.last
+      color: colors[Assignment.count % colors.size]
       }
     render json: stats
   end
