@@ -23,11 +23,11 @@ class StudentsController < ApplicationController
         color: c
       }
     end
-    stats << {
+    stats.unshift({
       value: students.select{|s| s.assignment_progress == nil}.count,
       label: "None",
       color: colors[Assignment.count + 1 % colors.size]
-      }
+      })
     render json: stats
   end
 
