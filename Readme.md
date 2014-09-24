@@ -23,4 +23,4 @@ Gradebook is a tool for managing assignments submitted via a GitHub repo, using 
 
 ![screen shot 2014-09-23 at 12 54 04 pm](https://cloud.githubusercontent.com/assets/347189/4378829/991ac53e-435b-11e4-9986-918dff95eddc.png)
 
-![screen shot 2014-09-23 at 12 54 23 pm](https://cloud.githubusercontent.com/assets/347189/4378826/95f49bbe-435b-11e4-9761-948bfe7d7887.png)
+![screen shot 2014-09-24 at 8 58 33 am](https://cloud.githubusercontent.com/assets/347189/4391275/bb40e352-4403-11e4-8111-b33b7534828a.png)
