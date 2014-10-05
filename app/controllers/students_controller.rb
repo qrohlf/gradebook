@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
     # all of the students into memory. At some point I want to take another stab as writing
     # this properly using database queries, but not today.
     students = Student.all
-    colors = ["#fdae61","#fee090","#e0f3f8","#abd9e9","#74add1","#4575b4"]
+    colors = ["#ccc", "#fdae61","#fee090","#e0f3f8","#abd9e9","#74add1","#4575b4"]
     stats = Assignment.all.order(:title).map.with_index do |assignment, index|
       c = colors[index % colors.size]
       {
