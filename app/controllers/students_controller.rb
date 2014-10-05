@@ -17,9 +17,9 @@ class StudentsController < ApplicationController
     # all of the students into memory. At some point I want to take another stab as writing
     # this properly using database queries, but not today.
     students = Student.all
-    colors = ["#ddd", "#fdae61","#fee090","#e0f3f8","#abd9e9","#74add1","#4575b4"]
+    colors = ["#fdae61","#fee090","#e0f3f8","#abd9e9","#74add1","#4575b4"]
     stats = Assignment.all.order(:title).map.with_index do |assignment, index|
-      c = colors[(index + 1) % colors.size]
+      c = colors[index % colors.size]
       {
         value: students.select{|s| s.assignment_progress == assignment}.count,
         label: assignment.title,
@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
     stats.unshift({
       value: students.select{|s| s.assignment_progress == nil}.count,
       label: "None",
-      color: colors.first
+      color: "#eee"
       })
     render json: stats
   end
