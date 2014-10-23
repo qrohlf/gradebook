@@ -9,4 +9,8 @@ class Assignment < ActiveRecord::Base
   def trigger_resync
     Student.update_all(last_sync: nil)
   end
+
+  def student_progress
+    Student.assignment_status.where(submissions: {assignment: self})
+  end
 end

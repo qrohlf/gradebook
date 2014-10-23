@@ -1,14 +1,15 @@
 .page-header
+  = link_to @assignment.details, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-file
+    Details
   = link_to assignments_path, :class => 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
     Back
   = link_to edit_assignment_path(@assignment), :class => 'btn btn-primary' do
     %span.glyphicon.glyphicon-pencil
     Edit
-  %h1 Show assignment
+  %h1= @assignment.title
 
-%dl.dl-horizontal
-  %dt Title:
-  %dd= @assignment.title
-  %dt Details:
-  %dd= @assignment.details
+
+.center-block.text-center#students-chart-wrapper
+  %canvas.assignment-chart{height: 400, width: 400, :'data-id' => @assignment.id}

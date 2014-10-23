@@ -58,4 +58,12 @@ class Student < ActiveRecord::Base
       datum[:student].sync_tags(tags: datum[:tags])
     end
   end
+
+  def self.assignment_status
+    Student.
+      joins(submissions: :assignment).
+      select('students.id, students.first_name, assignments.id, assignments.title, MAX(submissions.status) AS assignment_status').
+      order(['students.id', 'assignments.id']).
+      group('assignments.id, students.id')
+  end
 end

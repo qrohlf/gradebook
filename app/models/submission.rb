@@ -7,6 +7,7 @@ class Submission < ActiveRecord::Base
   validates :student, presence: true
 
   def github_url
+
       student.github_repo_url+"/releases/tag/"+tag
   end
 
@@ -24,5 +25,13 @@ class Submission < ActiveRecord::Base
 
   def status_label
     "<span class='label label-#{status_class}'>#{status.humanize}</span>".html_safe
+  end
+
+  def self.color_for_status(status)
+    {
+      not_graded: '#999999',
+      incomplete: '#17a3a5',
+      completed: '#8dbf67'
+    }.with_indifferent_access[status]
   end
 end

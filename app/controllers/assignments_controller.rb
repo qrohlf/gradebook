@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :graph_data]
   before_action :require_admin
   # GET /assignments
   # GET /assignments.json
@@ -59,6 +59,23 @@ class AssignmentsController < ApplicationController
       format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def graph_data
+    stats = @assignment.student_progress
+    graph_data = Submission.statuses.map do |status, status_value|
+      {
+        value: stats.select{|row| row.assignment_status == status_value}.count,
+        label: status.humanize,
+        color: Submission.color_for_status(status)
+      }
+    end
+    graph_data << {
+      value: Student.count - stats.size,
+      label: "not submitted",
+      color: "#fdae61"
+    }
+    render json: graph_data
   end
 
   private
