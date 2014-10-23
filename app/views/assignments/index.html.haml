@@ -22,3 +22,8 @@
           %td= link_to 'Show', assignment
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Destroy', assignment, :data => { confirm: 'Are you sure?' }, :method => :delete
+%h2 Graphs
+- @assignments.each do |assignment|
+  %h3= assignment.title
+  .center-block.text-center.chart-wrapper
+    %canvas.assignment-chart{height: 400, width: 400, :'data-id' => assignment.id}
