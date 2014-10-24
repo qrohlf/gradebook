@@ -7,14 +7,13 @@ $ ->
   options = {
     animationEasing: 'easeOutCubic'
     responsive: true
-    showTooltips: true
+    showTooltips: false
   }
+
   $(".assignment-chart").each ->
     elem = $(this)
     id = elem.data('id')
     url = "/assignments/"+id+"/graph_data.json"
     $.getJSON url, null, (data)->
-      console.log("elem")
-      console.log(elem[0])
       context = elem[0].getContext("2d")
       chart = new Chart(context).Doughnut(data, options)

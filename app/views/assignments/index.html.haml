@@ -1,29 +1,26 @@
+- title "Assignment Breakdown"
 .page-header
   = link_to new_assignment_path, :class => 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
     New Assignment
-  %h1 Listing assignments
+  %h1 Assignment Breakdown
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th Title
-        %th Details
-        %th
-        %th
-        %th
+- Assignment.find_each do |assignment|
+  - students = Student.where_assignment_progress(assignment)
+  .row.with-padding
+    .col-sm-3
+      .center-block.text-center.assignment-index-chart-wrapper
+        %canvas.assignment-chart{height: 100, width: 100, :'data-id' => assignment.id}
+    .col-sm-9
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title
+            Students who have progressed to
+            = link_to assignment.to_s+":", assignment
+        - if students.length == 0
+          .panel-body
+            %p There are no students whose progress == this assignment
+        .list-group
+          - students.each do |student|
+            %a.list-group-item{href: url_for(student)}= student.full_name
 
-    %tbody
-      - @assignments.each do |assignment|
-        %tr
-          %td= assignment.title
-          %td= assignment.details
-          %td= link_to 'Show', assignment
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Destroy', assignment, :data => { confirm: 'Are you sure?' }, :method => :delete
-%h2 Graphs
-- @assignments.each do |assignment|
-  %h3= assignment.title
-  .center-block.text-center.chart-wrapper
-    %canvas.assignment-chart{height: 400, width: 400, :'data-id' => assignment.id}

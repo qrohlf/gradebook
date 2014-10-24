@@ -62,19 +62,31 @@ class AssignmentsController < ApplicationController
   end
 
   def graph_data
-    stats = @assignment.student_progress
-    graph_data = Submission.statuses.map do |status, status_value|
+    count = @assignment.students_whose_latest_assignment_is_this().length
+    graph_data = [
       {
-        value: stats.select{|row| row.assignment_status == status_value}.count,
-        label: status.humanize,
-        color: Submission.color_for_status(status)
+        label: "this",
+        value: count,
+        color: "#2980b9"
+      },
+      {
+        label: "other",
+        value: Student.count - count,
+        color: "#7f8c8d"
       }
-    end
-    graph_data << {
-      value: Student.count - stats.size,
-      label: "not submitted",
-      color: "#fdae61"
-    }
+    ]
+    # graph_data = Submission.statuses.map do |status, status_value|
+    #   {
+    #     value: stats.select{|row| row.assignment_status == status_value}.count,
+    #     label: status.humanize,
+    #     color: Submission.color_for_status(status)
+    #   }
+    # end
+    # graph_data << {
+    #   value: Student.count - stats.size,
+    #   label: "not submitted",
+    #   color: "#fdae61"
+    # }
     render json: graph_data
   end
 

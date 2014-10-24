@@ -62,8 +62,32 @@ class Student < ActiveRecord::Base
   def self.assignment_status
     Student.
       joins(submissions: :assignment).
-      select('students.id, students.first_name, assignments.id, assignments.title, MAX(submissions.status) AS assignment_status').
+      select('students.id, students.first_name, assignments.id AS assignment_id, assignments.title, MAX(submissions.status) AS assignment_status').
       order(['students.id', 'assignments.id']).
       group('assignments.id, students.id')
+  end
+
+  # get assignment progress for all students
+  def self.assignment_progress(for_assignment = nil)
+    query = Student.
+      joins(submissions: :assignment).
+      where('submissions.status = ?', Submission.statuses[:completed]).
+      group('students.id').
+      select('students.id, students.first_name, MAX(assignments.id) AS assignment_id')
+
+    if for_assignment.nil?
+      return query
+    else
+      return query.having('MAX(assignments.id) = ?', for_assignment.id)
+    end
+  end
+
+  def self.where_assignment_progress(assignment)
+    Student.
+      joins(submissions: :assignment).
+      where('submissions.status = ?', Submission.statuses[:completed]).
+      group('students.id').
+      select('students.*, MAX(assignments.id) AS assignment_id').
+      having('MAX(assignments.id) = ?', assignment.id)
   end
 end

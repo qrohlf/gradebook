@@ -41,9 +41,17 @@ h1 {
 }
 
 
-#students-chart-wrapper, .chart-wrapper {
+#students-chart-wrapper {
   max-width: 50%;
   max-height: 400px;
+}
+
+.assignment-index-chart-wrapper {
+  max-width: 120px;
+}
+
+.row.with-padding {
+  margin-top: 32px;
 }
 
 

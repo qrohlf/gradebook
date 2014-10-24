@@ -11,26 +11,24 @@ class StudentsController < ApplicationController
   end
 
   # GET /stats.json
-  # Number of students who have completed each assignment
+  # Student progress
   def stats
-    # Right now, the way that this is implemented WILL NOT SCALE because it's loading
-    # all of the students into memory. At some point I want to take another stab as writing
-    # this properly using database queries, but not today.
-    students = Student.all
     colors = ["#fdae61","#fee090","#e0f3f8","#abd9e9","#74add1","#4575b4"]
     stats = Assignment.all.order(:title).map.with_index do |assignment, index|
       c = colors[index % colors.size]
       {
-        value: students.select{|s| s.assignment_progress == assignment}.count,
+        value: assignment.students_whose_latest_assignment_is_this.length,
         label: assignment.title,
         color: c
       }
     end
+
     stats.unshift({
-      value: students.select{|s| s.assignment_progress == nil}.count,
+      value: Student.count - stats.inject(0){|sum, stat| sum + stat[:value]},
       label: "None",
       color: "#eee"
       })
+    count = {count: stats.inject(0){|sum, stat| sum + stat[:value]}}
     render json: stats
   end
 

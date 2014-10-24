@@ -13,4 +13,8 @@ class Assignment < ActiveRecord::Base
   def student_progress
     Student.assignment_status.where(submissions: {assignment: self})
   end
+
+  def students_whose_latest_assignment_is_this
+    Student.assignment_progress(self)
+  end
 end

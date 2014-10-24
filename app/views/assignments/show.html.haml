@@ -10,6 +10,20 @@
     Edit
   %h1= @assignment.title
 
-
-.center-block.text-center#students-chart-wrapper
-  %canvas.assignment-chart{height: 400, width: 400, :'data-id' => @assignment.id}
+.row
+  .col-sm-6
+    .center-block.text-center
+      %canvas.assignment-chart{height: 400, width: 400, :'data-id' => @assignment.id}
+  .col-sm-6
+    - students = Student.where_assignment_progress(@assignment)
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title
+          Students who have progressed to
+          = link_to @assignment.to_s+":", @assignment
+      - if students.length == 0
+        .panel-body
+          %p There are no students whose progress == this assignment
+      .list-group
+        - students.each do |student|
+          %a.list-group-item{href: url_for(student)}= student.full_name
