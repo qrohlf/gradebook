@@ -15,11 +15,12 @@
       .panel.panel-default
         .panel-heading
           %h2.panel-title
-            Students who have progressed to
-            = link_to assignment.to_s+":", assignment
+            = students.length
+            students have progressed to
+            = link_to assignment.to_s, assignment
         - if students.length == 0
           .panel-body
-            %p There are no students whose progress == this assignment
+            %em move along, nothing to see here
         .list-group
           - students.each do |student|
             %a.list-group-item{href: url_for(student)}= student.full_name
