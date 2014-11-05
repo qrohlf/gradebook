@@ -7,7 +7,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions.json
   def index
     # this is such an awful hack
-    last_submissions = Student.all.map{|student| student.submissions.order(:created_at).last }.compact
+    last_submissions = Student.all.map{|student| student.submissions.order(:tag).last }.compact
     last_not_graded_submissions = last_submissions.select{|s| s.status == "not_graded"}
     @submissions = last_not_graded_submissions.sort{|x, y| x.created_at <=> y.created_at}
     # @submissions.select!{|s| s.status == :not_graded}
