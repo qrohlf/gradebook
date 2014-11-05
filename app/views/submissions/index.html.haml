@@ -2,12 +2,15 @@
 .page-header
   %h1 Ungraded Submissions
 
-.panel.panel-default
-  .list-group
-    - @submissions.each do |submission|
-      %a.list-group-item{href: url_for(submission.student)}
-        .label{class: "label-"+submission.status_class}= submission
-        = submission.student.full_name
-        %span.text-muted.pull-right
-          = time_ago_in_words(submission.created_at)
-          ago
+- if @submissions.count > 0
+  .panel.panel-default
+    .list-group
+      - @submissions.each do |submission|
+        %a.list-group-item{href: url_for(submission.student)}
+          .label{class: "label-"+submission.status_class}= submission
+          = submission.student.full_name
+          %span.text-muted.pull-right
+            = time_ago_in_words(submission.created_at)
+            ago
+- else
+  %h2.text-muted All done!
