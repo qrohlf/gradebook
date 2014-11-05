@@ -10,7 +10,6 @@ class SubmissionsController < ApplicationController
     last_submissions = Student.all.map{|student| student.submissions.order(:tag).last }.compact
     last_not_graded_submissions = last_submissions.select{|s| s.status == "not_graded"}
     @submissions = last_not_graded_submissions.sort{|x, y| x.created_at <=> y.created_at}
-    # @submissions.select!{|s| s.status == :not_graded}
   end
 
   # GET /submissions/1
