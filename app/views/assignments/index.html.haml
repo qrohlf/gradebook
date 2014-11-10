@@ -18,6 +18,9 @@
             = students.length
             students have progressed to
             = link_to assignment.to_s, assignment
+            %small.pull-right
+              Grade:
+              = assignment.grade
         - if students.length == 0
           .panel-body
             %em move along, nothing to see here
