@@ -17,4 +17,8 @@ class Assignment < ActiveRecord::Base
   def students_whose_latest_assignment_is_this
     Student.assignment_progress(self)
   end
+
+  def self.submission_deadline_past?
+    DateTime.now > DateTime.new(2014, 11, 12, 0, 0, 0, '-8') # 00:00 Wednesday November 12 2014
+  end
 end

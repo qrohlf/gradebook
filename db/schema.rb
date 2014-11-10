@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922001500) do
+ActiveRecord::Schema.define(version: 20141110170326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140922001500) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "tag_prefix"
+    t.string   "grade"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

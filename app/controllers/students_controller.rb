@@ -98,10 +98,10 @@ class StudentsController < ApplicationController
     end
 
     def sync_tags
-      @student.sync_tags(force_update: true)
+      @student.sync_tags(force_update: true) unless Assignment.submission_deadline_past?
     end
 
     def sync_all_tags!
-      Student.sync_all_tags!
+      Student.sync_all_tags! unless Assignment.submission_deadline_past?
     end
 end
