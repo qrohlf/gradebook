@@ -16,7 +16,7 @@
       Edit
   %h1= @student.full_name
 
-- if Assignment.submission_deadline_past?
+- if Assignment.submission_deadline_past? or params[:show_grade_info]
   .alert.alert-info
     The deadline for submitting lab assignments has passed. Your final grade for the lab section of the course is
     =@student.assignment_progress.grade rescue nil
