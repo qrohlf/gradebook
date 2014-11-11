@@ -39,6 +39,7 @@ class Student < ActiveRecord::Base
     return unless github_username and github_repo #can't update a user's tags if their info isn't here
     return unless force_update or last_sync.nil? or last_sync < DateTime.now - 5.minutes
     tags ||= Octokit.tags(github_username+'/'+github_repo).map(&:name)
+    puts tags
     Assignment.find_each do |assignment|
       assignment_tags = tags.select{|t| t.start_with? assignment.tag_prefix} unless assignment.tag_prefix.nil?
       puts assignment.to_s+" -> "+assignment_tags.join(", ")
