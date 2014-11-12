@@ -23,6 +23,6 @@ class Assignment < ActiveRecord::Base
   end
 
   def self.everything_is_graded?
-    false
+    true # WOOOOOOOOO!
   end
 end
