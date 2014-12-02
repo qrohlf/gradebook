@@ -14,8 +14,10 @@ Gradebook is a tool for managing assignments submitted via a GitHub repo, using 
 
 1. Clone the repo
 2. Edit `config/initializers/admin_users.rb` to reflect the admins' google account info.
-3. Set the `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, and `GITHUB_CLIENT_SECRET` environment variables (if you're deploying to heroku, you'll need to set those on the server as well).
-4. You're ready to go!
+3. Set the `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, and `GITHUB_CLIENT_SECRET` environment variables with your GitHub and Google API credentials (if you're deploying to heroku, you'll need to set those on the server as well).
+4. Install dependencies with `bundle install`
+5. Create the database with `rake db:create db:migrate` (you will need to have postgres installed)
+6. Run this app with `rackup` or `shotgun`
 
 ## Screenshots
 
