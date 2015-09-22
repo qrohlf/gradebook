@@ -1,11 +1,12 @@
 # Gradebook
 
-Gradebook is a tool for managing assignments submitted via a GitHub repo, using tags to differentiate between assignments. The bulk of it was written over the course of about 6 hours, after I got really fed up with trying to use Google Spreadsheets to input grades.
+Gradebook is a tool for managing assignments submitted via a GitHub repo, using tags to differentiate between assignments. This is a "scratch your own itch" project that I wrote after I got really fed up with trying to use Google Spreadsheets to input grades, but has the potential to be something actually quite useful. Contributions welcome!
 
 ## Features
 
 - Automatic submission tracking via the Github API
-- Supports assignment resubmission using version numbers
+- Progress graphs to show how many students are caught up
+- Supports assignment resubmission using git tags/semantic versioning
 - Secure private links for students to view their grades
 - Secure administrator login via Google OAuth
 - Nice admin UI (Bootstrap)
